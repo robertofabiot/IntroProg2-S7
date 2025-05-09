@@ -1,49 +1,62 @@
-"""o Enunciado: Simula un cajero autom醫ico con un saldo inicial. Permite al usuario 
-realizar dep髎itos (sumar al saldo) y retiros (restar del saldo) hasta que decida salir. 
-Muestra el saldo actual en cada operaci髇.
-o Especificaci髇: Usa un bucle while, un acumulador (para el saldo), y contadores 
-(opcionales, para el n鷐ero de dep髎itos/retiros). """
+"""o Enunciado: Simula un cajero autom谩tico con un saldo inicial. Permite al usuario 
+realizar  (sumar al saldo) y retiros (restar del saldo) hasta que decida salir. 
+Muestra el saldo actual en cada operaci锟絥.
+o Especificaci锟絥: Usa un bucle while, un acumulador (para el saldo), y contadores 
+(opcionales, para el n煤mero de /retiros). """
 
-print("BIENVENIDO A SU CAJERO AUTOM罷ICO")
-saldo_inicial = float(input("Ingrese el saldo inicial: "))
-saldo_actual = saldo_inicial
-numero_depositos = 0
-numero_retiros = 0
+def deposito(saldo_actual, numero_depositos):
+    deposito = float(input("Ingrese el saldo a depositar: "))
+    saldo_actual += deposito
+    numero_depositos += 1
+    return saldo_actual, numero_depositos
 
-opcion = int(input("""
-Seleccione una opci髇
-[1] Dep髎ito
-[2] Retiro
-[3] Salir
-"""))
-
-while opcion != 3:
-    if opcion == 1:
-        deposito = float(input("Ingrese el saldo a depositar: "))
-        saldo_actual += deposito
-        numero_depositos += 1
-    elif opcion == 2:
-        retiro = float(input("Ingrese el saldo a retirar: "))
-        if retiro <= saldo_actual:
-            saldo_actual -= retiro
-            numero_retiros += 1
-        else:
-            print("Saldo insuficiente")
+def retiro(saldo_actual, numero_retiros):
+    retiro = float(input("Ingrese el saldo a retirar: "))
+    if retiro <= saldo_actual:
+        saldo_actual -= retiro
+        numero_retiros += 1
     else:
-        print("Ingrese una opci髇 v醠ida.")
+        print("Saldo insuficiente")
+    return saldo_actual, numero_retiros
 
-    print(f"Saldo actual: {saldo_actual}")
-    opcion = int(input("""
-Seleccione una opci髇
-[1] Dep髎ito
-[2] Retiro
-[3] Salir
-"""))
-
-
-print(f"""
+def salir(saldo_actual, numero_depositos, numero_retiros):
+    print(f"""
 GRACIAS POR USAR EL CAJERO
 Saldo actual: {saldo_actual}
-N鷐ero de dep髎itos: {numero_depositos}
-N鷐ero de retiros: {numero_retiros}
+N煤mero de dep贸sitos: {numero_depositos}
+N煤mero de retiros: {numero_retiros}
 """)
+
+def main():
+    print("BIENVENIDO A SU CAJERO AUTOM脕TICO")
+    saldo_inicial = float(input("Ingrese el saldo inicial: "))
+    saldo_actual = saldo_inicial
+    numero_depositos = 0
+    numero_retiros = 0
+
+    opcion = int(input("""
+Seleccione una opci贸n
+[1] Dep贸sito
+[2] Retiro
+[3] Salir
+"""))
+
+    while opcion != 3:
+        if opcion == 1:
+            saldo_actual, numero_depositos = deposito(saldo_actual, numero_depositos)
+        elif opcion == 2:
+            saldo_actual, numero_retiros = retiro(saldo_actual, numero_retiros)
+        else:
+            print("Ingrese una opci贸n v谩lida.")
+
+        print(f"Saldo actual: {saldo_actual}")
+        opcion = int(input("""
+Seleccione una opci贸n
+[1] Dep贸sito
+[2] Retiro
+[3] Salir
+"""))
+
+    salir(saldo_actual, numero_depositos, numero_retiros)
+
+main()
