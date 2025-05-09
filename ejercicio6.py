@@ -1,8 +1,14 @@
-cadena = input("Ingrese un texto: ")
-contador = 1
+def calc_palabras(cadena):
+    contador = 1
+    
+    for caracter in cadena:
+        if caracter == " ":
+            contador += 1
+    
+    print(f"Las palabras en el texto son: {contador}")
 
-for caracter in cadena:
-    if caracter == " ":
-        contador += 1
+def main():
+    cadena = input("Ingrese un texto: ")
+    calc_palabras(cadena)
 
-print(f"Las palabras en el texto son: {contador}")
+main()
