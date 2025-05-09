@@ -1,20 +1,35 @@
-""" Enunciado: Pide al usuario la cantidad N de números y luego solicita cada número. 
-Encuentra el número mayor y el número menor. 
-Especificación: Usa un bucle for, y acumuladores."""
+""" Enunciado: Pide al usuario la cantidad N de nï¿½meros y luego solicita cada nï¿½mero. 
+Encuentra el nï¿½mero mayor y el nï¿½mero menor. 
+Especificaciï¿½n: Usa un bucle for, y acumuladores."""
 
-n = int(input("Ingrese la cantidad de números: "))
-numero_menor = None
-numero_mayor = None
+def encontrar_mayor_menor(numeros):    
+    numero_menor = None
+    numero_mayor = None
 
-for i in range(1, n+1):
-    x = int(input(f"Ingrese el número #{i}: "))
-    
-    if i == 1:
-        numero_menor = x
-        numero_mayor = x
-    elif x < numero_menor:
-        numero_menor = x
-    elif x > numero_mayor:
-        numero_mayor = x
+    for i in range(1, numeros+1):
+        x = int(input(f"Ingrese el nÃºmero #{i}: "))
 
-print(f"El número mayor es {numero_mayor} y el número menor es {numero_menor}")
+        if i == 1:
+            numero_menor = x
+            numero_mayor = x
+        elif x < numero_menor:
+            numero_menor = x
+        elif x > numero_mayor:
+            numero_mayor = x
+
+    print(f"El nÃºmero mayor es {numero_mayor} y el nÃºmero menor es {numero_menor}")
+
+def main():
+    while True:
+        try:
+            numeros = int(input("Ingrese la cantidad de nÃºmeros: "))
+            if numeros <= 0:
+                raise ValueError
+            break
+        except ValueError:
+            print("ERROR. La cantidad de nÃºmeros debe ser positiva y entera.")
+        
+
+    encontrar_mayor_menor(numeros)
+
+main()
